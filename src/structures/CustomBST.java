@@ -42,4 +42,45 @@ public class CustomBST<T extends Comparable<T>> {
     public int size() {
         return size;
     }
+
+    // ---------------------------------------------------------------
+    // INSERT
+    // ---------------------------------------------------------------
+
+    /**
+     * Inserts a value into the BST. Duplicates are rejected (returns false)
+     * rather than silently ignored, so callers/tests can detect them -
+     * this doubles as the "duplicate keys" edge case required by Section 10.
+     */
+    public boolean insert(T value) {
+        if (value == null) {
+            throw new IllegalArgumentException("Cannot insert null value into CustomBST.");
+        }
+        if (root == null) {
+            root = new Node<>(value);
+            size++;
+            return true;
+        }
+        Node<T> current = root;
+        while (true) {
+            int cmp = value.compareTo(current.value);
+            if (cmp == 0) {
+                return false; // duplicate — reject
+            } else if (cmp < 0) {
+                if (current.left == null) {
+                    current.left = new Node<>(value);
+                    size++;
+                    return true;
+                }
+                current = current.left;
+            } else {
+                if (current.right == null) {
+                    current.right = new Node<>(value);
+                    size++;
+                    return true;
+                }
+                current = current.right;
+            }
+        }
+    }
 }
