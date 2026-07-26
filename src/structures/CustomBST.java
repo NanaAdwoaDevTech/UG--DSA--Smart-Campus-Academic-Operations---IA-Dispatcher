@@ -1,5 +1,8 @@
 package src.structures;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * CustomBST.java
  * -----------------------------------------------------------------------
@@ -82,5 +85,52 @@ public class CustomBST<T extends Comparable<T>> {
                 current = current.right;
             }
         }
+    }
+
+    // ---------------------------------------------------------------
+    // SEARCH  (returns whether found, and can also expose the path)
+    // ---------------------------------------------------------------
+
+    /** Standard search: returns true if value exists in the tree. */
+    public boolean search(T value) {
+        return contains(value);
+    }
+
+    /**
+     * Trace-friendly search: returns the ordered list of values visited on
+     * the path from the root to the target (inclusive if found, otherwise
+     * the path ends at the last node checked before falling off the tree).
+     * This is the "search path" evidence Section 6 asks for.
+     */
+    public List<T> searchPath(T value) {
+        List<T> path = new ArrayList<>();
+        if (value == null) {
+            return path;
+        }
+        Node<T> current = root;
+        while (current != null) {
+            path.add(current.value);
+            int cmp = value.compareTo(current.value);
+            if (cmp == 0) {
+                break;
+            } else if (cmp < 0) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+        }
+        return path;
+    }
+
+    /** Simple boolean containment check (no path tracking, cheaper). */
+    public boolean contains(T value) {
+        if (value == null) return false;
+        Node<T> current = root;
+        while (current != null) {
+            int cmp = value.compareTo(current.value);
+            if (cmp == 0) return true;
+            current = (cmp < 0) ? current.left : current.right;
+        }
+        return false;
     }
 }
