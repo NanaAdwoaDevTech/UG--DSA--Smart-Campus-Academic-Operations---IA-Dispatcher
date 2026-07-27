@@ -15,7 +15,7 @@ Every rule below exists for a reason: **this project is deliberately built so th
 
 ## ⚠️ IMPORTANT QUALITY RULES BEFORE YOU SUBMIT
 
-1. **CONFIRM IT WORKS FIRST:** You MUST run and test your code locally before uploading it to Drive. Do not submit unverified or broken code for me to debug for you — I will send it back to you immediately.
+1. **CONFIRM IT WORKS FIRST:** You MUST run and test your code locally before submitting for review. Do not submit unverified or broken code for me to debug for you — I will send it back to you immediately.
 2. **INCLUDE TEST CODE:** Every custom class must include a running `main()` method or test file proving that it works under normal cases, empty cases, and edge cases.
 3. **NO BUILT-IN JAVA COLLECTIONS:** You cannot use `ArrayList`, `LinkedList`, `HashMap`, `PriorityQueue`, or `Vector` inside your custom structure logic. They MUST be coded from scratch.
 
