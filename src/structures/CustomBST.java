@@ -133,4 +133,21 @@ public class CustomBST<T extends Comparable<T>> {
         }
         return false;
     }
+
+    // ---------------------------------------------------------------
+    // INORDER TRAVERSAL  (sorted output evidence)
+    // ---------------------------------------------------------------
+
+    public List<T> inorderTraversal() {
+        List<T> result = new ArrayList<>();
+        inorderHelper(root, result);
+        return result;
+    }
+
+    private void inorderHelper(Node<T> node, List<T> result) {
+        if (node == null) return;
+        inorderHelper(node.left, result);
+        result.add(node.value);
+        inorderHelper(node.right, result);
+    }
 }
