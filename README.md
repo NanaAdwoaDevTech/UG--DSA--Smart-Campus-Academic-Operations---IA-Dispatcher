@@ -15,7 +15,7 @@ Every rule below exists for a reason: **this project is deliberately built so th
 
 ## ⚠️ IMPORTANT QUALITY RULES BEFORE YOU SUBMIT
 
-1. **CONFIRM IT WORKS FIRST:** You MUST run and test your code locally before submitting for review. Do not submit unverified or broken code for me to debug for you — I will send it back to you immediately.
+1. **CONFIRM IT WORKS FIRST:** You MUST run and test your code locally before uploading it to Drive. Do not submit unverified or broken code for me to debug for you — I will send it back to you immediately.
 2. **INCLUDE TEST CODE:** Every custom class must include a running `main()` method or test file proving that it works under normal cases, empty cases, and edge cases.
 3. **NO BUILT-IN JAVA COLLECTIONS:** You cannot use `ArrayList`, `LinkedList`, `HashMap`, `PriorityQueue`, or `Vector` inside your custom structure logic. They MUST be coded from scratch.
 
@@ -30,8 +30,8 @@ Do not use someone else's parameter. Do not skip deriving it yourself, even if t
 | # | Name | Student ID | Assigned Task / File(s) | ID Parameter Derivation Rule |
 |---|------|-----------|--------------------------|-------------------------------|
 | 1 | Nana Adwoa Aforo Osei | 22028283 | Group Leader / PM | Oversees overall architecture, interfaces, and integration. |
-| 2 | Benedict Frimpong | 22390234 | `data/locations.csv` & `data/roads.csv` | Initial batch load size = Sum of ID digits (2+2+3+9+0+2+3+4) = **25** records |
-| 3 | Glorious James Okyere | 22031299 | `database/schema.sql` & `docs/M1_Context.docx` | Initial resource capacity seed = Sum of last 3 ID digits (2+9+9) = **20** |
+| 2 | Benedict Frimpong | 22390234 | `data/locations.csv` & `data/roads.csv` ✅ *M1 complete — see note below* | Initial batch load size = Sum of ID digits (2+2+3+9+0+2+3+4) = **25** records |
+| 3 | Glorious James Okyere | 22031299 | `database/schema.sql` & `docs/M1_Context.docx` ✅ *M1 complete — see note below* | Initial resource capacity seed = Sum of last 3 ID digits (2+9+9) = **20** |
 | 4 | Donkoh Kwasi Kyei | 22302834 | `src/structures/CustomArrayList.java` | Initial array capacity = Sum of ID digits (2+2+3+0+2+8+3+4) = **24** |
 | 5 | Hammond Emmanuel Adukwei | 22400734 | `src/structures/CustomLinkedList.java` | Custom iterator step size = Last digit (4) + 1 = **5** |
 | 6 | Adjei Asaph Adjetey | 22242385 | `src/structures/CustomStack.java` | Undo/Audit log stack depth = Last 2 digits = **85** |
@@ -43,12 +43,28 @@ Do not use someone else's parameter. Do not skip deriving it yourself, even if t
 | 12 | Anefo Israel | 22299195 | `src/algorithms/SimpleSorts.java` | Insertion sort threshold = Last 2 digits (95) % 20 = **15** |
 | 13 | Sarpong Malvin Sarfo | 22300217 | `src/algorithms/AdvancedSorts.java` | Quicksort pivot offset = Last digit = **7** |
 | 14 | Daniella Kalevor | 22405426 | `src/algorithms/CampusGraph.java` | Dijkstra traffic penalty multiplier = Last 2 digits (26) / 10 = **2.6** |
+| 15 | Selina Adu Odoi | 22013807 | **QA & Integration Lead** — see dedicated section below | Minimum integration test cases per module = Sum of ID digits (2+2+0+1+3+8+0+7) = **23** |
 
 **If your name is not on this list, or you believe you've been assigned the wrong row, contact the Group Leader immediately — do not just pick a task yourself.**
 
 ---
 
+## ✅ Note for Benedict & Glorious: You're Off the Hook for Step 2–4 Deliverables
+
+M1 (`locations.csv`, `roads.csv`, `schema.sql`, `M1_Context_Document.docx`) is done and merged. You do **not** need to keep going through Steps 2–4 for new components — that phase of your work is complete.
+
+From here, your remaining responsibilities for the rest of the semester are lighter:
+- **Maintain what you built.** If Selina's integration testing (see below) surfaces a bug or inconsistency in the CSVs or schema, you're the one who fixes it — you still own these files.
+- **Answer questions from teammates** whose components read from your data or schema, if something is unclear.
+- **Write your section of the final report** covering your M1 deliverables (data dictionary, schema design decisions, etc.).
+
+You do not need to submit further PRs against Steps 2–4, run the Step 3 checklist again, or worry about further ID-verification headers unless you're pushing a fix to your existing files — in which case the original header and derivation rule still applies.
+
+---
+
 ## 📌 STEP 2: What You Need to Do
+
+*(This step applies to everyone still actively building a component — i.e. everyone except Benedict and Glorious, whose deliverables are covered above, and Selina, whose role is described in her own section below.)*
 
 You own your module **end-to-end**. That means you are responsible for all of the following, not just "the code":
 
@@ -120,6 +136,43 @@ public class CustomHashTable {
 ```
 
 If your declared value doesn't match the formula for your actual Student ID, or if the value is missing entirely, your PR will be flagged and rejected regardless of whether the rest of the code works.
+
+---
+
+## 🆕 Selina's Role: QA & Integration Lead
+
+Selina joined the team after the Step 2–4 module-building phase was already underway, so her role is different from everyone else's — she isn't building a new standalone structure or algorithm. Instead, she's responsible for making sure everyone else's finished pieces actually work **together**.
+
+This role only makes sense once other people's code exists, so it naturally starts now.
+
+### What Selina needs to produce:
+
+**1. Integration Test Harness** (`src/IntegrationTestRunner.java`)
+A single test file that instantiates every teammate's structure and algorithm and runs them together against a shared, realistic scenario — e.g. an IA alert flowing from the queue, through the graph pathfinding, into the hash table lookup, with the stack logging the audit trail. This is the first real proof that the modules don't just compile in isolation, but actually cooperate.
+
+- Minimum of **23** integration test cases across all modules (derived from Student ID 22013807, per the table above).
+- Must cover at least one integration path touching every teammate's component listed in Step 1.
+
+**2. Compliance Verification Pass**
+Before any component is merged, Selina checks it against:
+- The Step 3 Pre-PR Checklist (compiles, tested, no banned collections, correct file location, clean formatting).
+- The Step 4 ID-verification header and declared variable, confirmed against the derivation rule in the Step 1 table.
+
+If something doesn't match, she flags it back to that teammate **before** it's merged — not after, and not by fixing it herself.
+
+**3. System Demo Driver** (`Main.java`)
+The single entry point that ties `locations.csv`, `roads.csv`, `schema.sql`, and every teammate's structure/algorithm into one runnable end-to-end demo, for use in the final presentation.
+
+**4. Integration & Testing Section of the Final Report**
+Documents what was tested, what broke during integration, how it was resolved, and any remaining known issues.
+
+### Selina still follows the same rules as everyone else:
+- Her own files (the test harness and `Main.java`) still need the Step 4 header and her declared ID-derived variable.
+- She still can't use banned Java collections in her own code.
+- She's still expected to actually run everything locally before reporting a pass or fail — no rubber-stamping.
+
+### A practical note:
+Reviewing everyone's code this closely means Selina will end up understanding the whole system better than almost anyone else on the team by the end of this — that's a genuine advantage of the role, not just a consolation prize.
 
 ---
 
