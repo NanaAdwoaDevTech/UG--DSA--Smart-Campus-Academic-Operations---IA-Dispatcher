@@ -150,4 +150,37 @@ public class CustomBST<T extends Comparable<T>> {
         result.add(node.value);
         inorderHelper(node.right, result);
     }
+
+    // ---------------------------------------------------------------
+    // HEIGHT / DEPTH + ID-DERIVED THRESHOLD CHECK
+    // ---------------------------------------------------------------
+
+    /** Height of the tree (empty tree = -1, single node = 0). */
+    public int height() {
+        return heightHelper(root);
+    }
+
+    private int heightHelper(Node<T> node) {
+        if (node == null) return -1;
+        return 1 + Math.max(heightHelper(node.left), heightHelper(node.right));
+    }
+
+    /**
+     * Checks the current tree height against MAX_DEPTH_THRESHOLD (27,
+     * derived from ID digit sum). Returns true if the tree is still
+     * within the healthy-depth bound.
+     */
+    public boolean checkDepthWithinThreshold() {
+        return height() <= MAX_DEPTH_THRESHOLD;
+    }
+
+    /**
+     * Flags a degenerate/skewed tree: true when height exceeds the
+     * ID-derived threshold. Intended as evidence when comparing this
+     * unbalanced BST against the balanced-tree / B-tree structures
+     * required elsewhere in Section 6.
+     */
+    public boolean isSkewed() {
+        return height() > MAX_DEPTH_THRESHOLD;
+    }
 }
