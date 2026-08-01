@@ -183,4 +183,53 @@ public class CustomBST<T extends Comparable<T>> {
     public boolean isSkewed() {
         return height() > MAX_DEPTH_THRESHOLD;
     }
+
+    // ---------------------------------------------------------------
+    // DEMO / TRACE OUTPUT (for report evidence — not required at runtime)
+    // ---------------------------------------------------------------
+
+    public static void main(String[] args) {
+        CustomBST<Integer> bst = new CustomBST<>();
+
+        // Normal case
+        int[] values = {50, 30, 70, 20, 40, 60, 80, 10};
+        for (int v : values) {
+            bst.insert(v);
+        }
+
+        System.out.println("Inserted: " + java.util.Arrays.toString(values));
+        System.out.println("Inorder (sorted) traversal: " + bst.inorderTraversal());
+        System.out.println("Size: " + bst.size());
+        System.out.println("Height: " + bst.height());
+        System.out.println("MAX_DEPTH_THRESHOLD (from ID digit sum): " + MAX_DEPTH_THRESHOLD);
+        System.out.println("Within depth threshold? " + bst.checkDepthWithinThreshold());
+
+        // Search path evidence
+        int target = 60;
+        System.out.println("\nSearch path for " + target + ": " + bst.searchPath(target));
+        System.out.println("Found " + target + "? " + bst.contains(target));
+
+        int missing = 999;
+        System.out.println("Search path for missing value " + missing + ": " + bst.searchPath(missing));
+        System.out.println("Found " + missing + "? " + bst.contains(missing));
+
+        // Boundary case: empty tree
+        CustomBST<Integer> emptyTree = new CustomBST<>();
+        System.out.println("\nEmpty tree height: " + emptyTree.height());
+        System.out.println("Empty tree isEmpty(): " + emptyTree.isEmpty());
+        System.out.println("Empty tree inorder: " + emptyTree.inorderTraversal());
+
+        // Invalid input case: duplicate insert
+        boolean dupResult = bst.insert(50);
+        System.out.println("\nInserting duplicate 50 -> accepted? " + dupResult);
+
+        // Skewed tree demo: sequential inserts to show degeneration and
+        // exercise the ID-derived threshold check
+        CustomBST<Integer> skewed = new CustomBST<>();
+        for (int i = 1; i <= 30; i++) {
+            skewed.insert(i);
+        }
+        System.out.println("\nSkewed tree (sequential 1..30) height: " + skewed.height());
+        System.out.println("Skewed tree isSkewed() [threshold=" + MAX_DEPTH_THRESHOLD + "]: " + skewed.isSkewed());
+    }
 }
