@@ -1,3 +1,5 @@
+package structures;
+
 /*
  * Name: Jeff Akubea
  * Student ID: 22411677
