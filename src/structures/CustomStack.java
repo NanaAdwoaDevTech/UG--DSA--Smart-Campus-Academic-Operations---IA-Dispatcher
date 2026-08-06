@@ -1,12 +1,10 @@
+/*
+ * Name: Adjei Asaph Adjetey
+ * Student ID: 22242385
+ * Assigned Component: CustomStack.java (src/structures/CustomStack.java)
+ */
 
- // Student Name: Adjei Asaph Adjetey
- // Student ID: 22242385
- // Assigned Component: CustomStack.java (src/structures/CustomStack.java)
-
-
-// Removed package declaration to allow file to compile when placed outside
-// of the src/structures directory. If you keep this file in a matching
-// directory structure, you can restore the package statement.
+package structures;
 
 /**
  * CustomStack
