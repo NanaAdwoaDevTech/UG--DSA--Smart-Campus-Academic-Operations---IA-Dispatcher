@@ -5,8 +5,9 @@
  * ID Derivation Rule: Quicksort pivot offset = Last digit of Student ID (7)
  */
 
+package algorithms;
+
 public class AdvancedSorts {
-    // Verification variable derived from Student ID: 22300217 -> 7
     private static final int PIVOT_OFFSET = 7;
 
     /* Public API: sorts the array in-place using Quicksort. */
@@ -50,7 +51,6 @@ public class AdvancedSorts {
         return i;
     }
 
-    /* Printing helpers (no imports). */
     private static void printArray(String prefix, int[] a) {
         if (a == null) {
             System.out.println(prefix + "null");
