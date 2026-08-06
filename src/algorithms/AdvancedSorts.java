@@ -81,34 +81,34 @@ public class AdvancedSorts {
     public static void main(String[] args) {
         System.out.println("AdvancedSorts Quicksort demo — pivot offset = " + PIVOT_OFFSET);
 
-        int[] normal = { 5, 3, 8, 1, 2, 7, 4, 6 };
-        printArray("Before normal: ", normal);
+        int[] normal = { 5, 3, 8, 1, 2, 7, 4, 7 };
+        printArray("Before: ", normal);
         quicksort(normal);
-        printArray("After  normal: ", normal);
+        printArray("After: ", normal);
         printSortedFlag(normal);
 
         int[] single = { 42 };
-        printArray("Before single: ", single);
+        printArray("Before: ", single);
         quicksort(single);
-        printArray("After  single: ", single);
+        printArray("After: ", single);
         printSortedFlag(single);
 
         int[] small = { 9, 3, 7 };
-        printArray("Before small: ", small);
+        printArray("Before: ", small);
         quicksort(small);
-        printArray("After  small: ", small);
+        printArray("After: ", small);
         printSortedFlag(small);
 
         int[] empty = {};
-        printArray("Before empty: ", empty);
+        printArray("Before: ", empty);
         quicksort(empty);
-        printArray("After  empty: ", empty);
+        printArray("After: ", empty);
         printSortedFlag(empty);
 
         int[] nul = null;
-        printArray("Before null: ", nul);
+        printArray("Before: ", nul);
         quicksort(nul);
-        printArray("After  null: ", nul);
+        printArray("After: ", nul);
         printSortedFlag(nul);
     }
 }
