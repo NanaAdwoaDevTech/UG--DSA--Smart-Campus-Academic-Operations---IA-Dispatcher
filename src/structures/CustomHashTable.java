@@ -113,9 +113,23 @@ public class CustomHashTable<K, V> {
         return null;
     }
 
-    // Check if key exists
+    // Robust check if key exists (handles null values correctly)
     public boolean containsKey(K key) {
-        return get(key) != null;
+        if (key == null) {
+            return false;
+        }
+
+        int index = hash(key);
+        Node<K, V> current = table[index];
+
+        while (current != null) {
+            if (current.key.equals(key)) {
+                return true;
+            }
+            current = current.next;
+        }
+
+        return false;
     }
 
     // Get number of elements
@@ -142,11 +156,16 @@ public class CustomHashTable<K, V> {
         System.out.println("Get updated LOC001 (Expected 150): " + map.get("LOC001"));
         System.out.println("Size (Expected 2): " + map.size());
 
+        // Test Edge Case: Key mapped to a null value
+        map.put("LOC_NULL", null);
+        System.out.println("Get 'LOC_NULL' value (Expected null): " + map.get("LOC_NULL"));
+        System.out.println("Contains 'LOC_NULL' key (Expected true): " + map.containsKey("LOC_NULL"));
+
         // Test invalid / empty inputs
         System.out.println("Contains 'LOC999' (Expected false): " + map.containsKey("LOC999"));
         System.out.println("Remove missing key (Expected null): " + map.remove("LOC999"));
 
         map.remove("LOC002");
-        System.out.println("Size after removal (Expected 1): " + map.size());
+        System.out.println("Size after removal (Expected 2): " + map.size());
     }
 }
