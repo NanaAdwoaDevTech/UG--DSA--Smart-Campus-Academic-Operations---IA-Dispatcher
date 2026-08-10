@@ -1,4 +1,4 @@
-'''
+```bash
 UG--DSA--Smart-Campus-Academic-Operations---IA-Dispatcher/
 │
 ├── data/
@@ -26,4 +26,4 @@ UG--DSA--Smart-Campus-Academic-Operations---IA-Dispatcher/
     │
     ├── IntegrationTestRunner.java     <-- Selina Adu Odoi (22013807)
     └── Main.java                      <-- Selina Adu Odoi (22013807) & Nana Adwoa (22028283)
-'''
+```
