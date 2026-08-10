@@ -21,7 +21,51 @@ Every rule below exists for a reason: **this project is deliberately built so th
 
 ---
 
-## 📌 STEP 1: Find Your Assigned Task & ID Parameter
+## 📊 M4 Status Update
+
+Here's where things stand heading into M4. Find your name below to see your current status and what (if anything) you need to do next.
+
+### 🟢 Merged & Ready — No Action Needed
+
+These components pass M2, M3, and M4 requirements and are cleared for integration:
+
+| Name | File(s) | Status |
+|------|---------|--------|
+| Benedict Frimpong | `data/locations.csv`, `data/roads.csv` | ✅ Complete — integrated during M1 |
+| Glorious James Okyere | `database/schema.sql` | ✅ Complete — finalized during M1 |
+| Timothy Donkor Kyebambo | `src/algorithms/CustomSearch.java` | ✅ Merged (PR #2) |
+| Anefo Israel | `src/algorithms/SimpleSorts.java` | ✅ Approved (PR #12, PR #13 — includes trace tables & structural diagram) |
+| Hammond Emmanuel Adukwei | `src/structures/CustomLinkedList.java` | ✅ Approved (PR #8) |
+| Adjei Asaph Adjetey | `src/structures/CustomStack.java` | ✅ Approved (PR #10) |
+
+Nothing further required from you at this stage beyond what's already outlined in the "M1 complete" note above (if applicable) or general maintenance if a bug surfaces later.
+
+### 🟡 Needs a Quick Fix Before Merge
+
+The logic here is solid — these are small, specific fixes, not rewrites:
+
+| Name | File | PR | What to Fix |
+|------|------|----|--------------|
+| Jeff Akubea | `src/structures/CustomHashTable.java` | PR #11 | Remove the leftover unreachable `return get(key) != null;` line inside `containsKey()`. |
+| Sarpong Malvin Sarfo | `src/algorithms/AdvancedSorts.java` | PR #9 | Delete the accidentally committed binary file `out/AdvancedSorts.class` from the PR. |
+| Godlove Agyei Sarfo | `src/structures/CustomQueue.java` | PR #7 | Move the file from `src/interfaces/` to `src/structures/`, and add an embedded `main()` test runner. |
+
+Please push these fixes as soon as you can — these PRs are otherwise ready to merge and are blocking nothing except this small item.
+
+### 🔴 Outstanding — Action Needed Now
+
+These components have not yet been submitted. This directly blocks integration testing for the rest of the team, so please treat this as urgent:
+
+| Name | File | Status | What's Needed |
+|------|------|--------|----------------|
+| Daniella Kalevor | `src/algorithms/CampusGraph.java` | ⚠️ Pending | Build the graph independently rather than waiting on other components, and open a PR. |
+| Donkoh Kwasi Kyei | `src/structures/CustomArrayList.java` | 🔴 Missing | No PR or branch currently exists — please open one. |
+| Hellena Osei Tuah Addo | `src/structures/CustomDeque.java` | 🔴 Missing | No commits, branches, or PRs on record — please push your work. |
+| David Edu Turkson | `src/structures/CustomBST.java` | 🔴 Missing | No commits, branches, or PRs on record — please push your work. |
+
+If you're stuck on something specific, say so in the group chat now rather than after the deadline — that's a much easier problem to solve than a missing submission.
+
+---
 
 Locate your name in the table below. This tells you three things: **which file(s) you own**, **what you're building**, and **the specific numeric parameter you must derive from your own Student ID and hard-code into your solution**.
 
