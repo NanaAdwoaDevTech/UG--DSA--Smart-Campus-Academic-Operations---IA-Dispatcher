@@ -9,7 +9,7 @@ UG--DSA--Smart-Campus-Academic-Operations---IA-Dispatcher/
 │   └── schema.sql                     <-- Glorious James Okyere (22031299)
 │
 └── src/
-    ├── structures/                    <-- Custom Data Structures (Members 2, 3, 5, 6, 7, 9, 10)
+    ├── structures/                    <-- Custom Data Structures
     │   ├── CustomArrayList.java       <-- Donkoh Kwasi Kyei (22302834)
     │   ├── CustomLinkedList.java      <-- Hammond Emmanuel Adukwei (22400734)
     │   ├── CustomStack.java           <-- Adjei Asaph Adjetey (22242385)
