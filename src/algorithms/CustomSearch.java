@@ -1,10 +1,21 @@
 package algorithms;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 /*
  * Name: Timothy Donkor Kyebambo
  * Student ID: 22370734
  * Assigned Component: Custom Binary Search Algorithm
  * ID Derivation Rule: Last 4 digits of Student ID (22370734) -> 0734
+ *
+ * M4/M5 Integration Note:
+ * Adds CSV-driven key extraction on top of the original M2 logic below,
+ * which is otherwise unchanged. locations.csv columns are: locationId,
+ * name, area, type, latitude, longitude. Each locationId (e.g. "LOC023")
+ * is reduced to its numeric suffix (23) so the existing int[]-based
+ * binary search can be reused with no change to the core algorithm.
  */
 public class CustomSearch {
 
@@ -149,6 +160,71 @@ public class CustomSearch {
     }
 
     // ---------------------------------------------------------------
+    // M4 CSV INTEGRATION
+    // ---------------------------------------------------------------
+
+    /**
+     * Extracts the trailing numeric portion of a locationId string.
+     * e.g. "LOC023" -> 23, "LOC001" -> 1
+     * Returns -1 if no numeric suffix is found (defensive, mirrors the
+     * NOT_FOUND convention used elsewhere in this file).
+     */
+    static int extractNumericSuffix(String locationId) {
+        if (locationId == null || locationId.isEmpty()) {
+            return NOT_FOUND;
+        }
+        int end = locationId.length();
+        int start = end;
+        while (start > 0 && Character.isDigit(locationId.charAt(start - 1))) {
+            start--;
+        }
+        if (start == end) {
+            return NOT_FOUND; // no trailing digits found
+        }
+        String digits = locationId.substring(start, end);
+        try {
+            return Integer.parseInt(digits);
+        } catch (NumberFormatException e) {
+            return NOT_FOUND;
+        }
+    }
+
+    /**
+     * Reads locations.csv and builds an IntArray of numeric keys
+     * extracted from the locationId column (assumed to be column 0).
+     * Skips the header row. No java.util collections used.
+     */
+    static IntArray readLocationIdsFromCSV(String csvFilePath) throws IOException {
+        IntArray keys = new IntArray();
+        BufferedReader reader = new BufferedReader(new FileReader(csvFilePath));
+        try {
+            String line;
+            boolean isHeader = true;
+            while ((line = reader.readLine()) != null) {
+                if (isHeader) {
+                    isHeader = false;
+                    continue;
+                }
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+                String[] fields = line.split(",");
+                if (fields.length == 0) {
+                    continue;
+                }
+                String locationId = fields[0].trim();
+                int key = extractNumericSuffix(locationId);
+                if (key != NOT_FOUND) {
+                    keys.add(key);
+                }
+            }
+        } finally {
+            reader.close();
+        }
+        return keys;
+    }
+
+    // ---------------------------------------------------------------
     // Test runner / trace evidence (main method)
     // ---------------------------------------------------------------
     public static void main(String[] args) {
@@ -157,6 +233,35 @@ public class CustomSearch {
 
         System.out.println("=== CustomSearch Test Evidence ===");
         System.out.println("TARGET_SEED (ID-derived) = " + TARGET_SEED);
+        System.out.println();
+
+        // -------------------------------------------------------
+        // 0. M4 CSV-DRIVEN CASE (real campus data)
+        // -------------------------------------------------------
+        System.out.println("-- M4: CSV-driven case (locations.csv) --");
+        String csvPath = "locations.csv"; // adjust path to match repo layout if needed
+        try {
+            IntArray csvKeys = readLocationIdsFromCSV(csvPath);
+            csvKeys.sortInPlace();
+            int[] csvArr = csvKeys.toRawArray();
+            System.out.println("Loaded " + csvKeys.size() + " location keys from " + csvPath);
+            System.out.print("Sorted CSV keys: ");
+            printArray(csvArr);
+
+            int csvTarget = 23; // corresponds to LOC023
+            totalCount++;
+            int csvIdxIter = binarySearchIterative(csvArr, csvTarget);
+            int csvIdxRec = binarySearchRecursive(csvArr, csvTarget);
+            boolean passCsv = csvIdxIter >= 0 && csvArr[csvIdxIter] == csvTarget
+                    && csvIdxIter == csvIdxRec;
+            System.out.println("Search for LOC023 (key=" + csvTarget + ") -> iterative index "
+                    + csvIdxIter + ", recursive index " + csvIdxRec
+                    + " | " + (passCsv ? "PASS" : "FAIL"));
+            if (passCsv) passCount++;
+        } catch (IOException e) {
+            System.out.println("Could not read " + csvPath + " (" + e.getMessage() + ").");
+            System.out.println("Skipping CSV case; hardcoded cases below still run.");
+        }
         System.out.println();
 
         // -------------------------------------------------------
@@ -282,6 +387,17 @@ public class CustomSearch {
         }
         System.out.println("Out-of-bounds access handling | " + (threw ? "PASS" : "FAIL"));
         if (threw) passCount++;
+
+        // 3e. extractNumericSuffix on malformed / missing input (M4 addition).
+        totalCount++;
+        int badSuffix1 = extractNumericSuffix("LOC");
+        int badSuffix2 = extractNumericSuffix("");
+        int badSuffix3 = extractNumericSuffix(null);
+        boolean passSuffix = badSuffix1 == NOT_FOUND && badSuffix2 == NOT_FOUND && badSuffix3 == NOT_FOUND;
+        System.out.println("extractNumericSuffix on malformed input (\"LOC\", \"\", null) -> "
+                + badSuffix1 + ", " + badSuffix2 + ", " + badSuffix3
+                + " | " + (passSuffix ? "PASS" : "FAIL"));
+        if (passSuffix) passCount++;
 
         System.out.println();
         System.out.println("=== Summary: " + passCount + "/" + totalCount + " tests passed ===");
