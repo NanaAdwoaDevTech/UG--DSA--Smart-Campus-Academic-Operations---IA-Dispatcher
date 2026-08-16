@@ -239,8 +239,8 @@ public class CustomSearch {
         // 0. M4 CSV-DRIVEN CASE (real campus data)
         // -------------------------------------------------------
         System.out.println("-- M4: CSV-driven case (locations.csv) --");
-        String csvPath = "locations.csv"; // adjust path to match repo layout if needed
-        try {
+String csvPath = "data/locations.csv"; // path relative to project root, matches repo layout               
+try {
             IntArray csvKeys = readLocationIdsFromCSV(csvPath);
             csvKeys.sortInPlace();
             int[] csvArr = csvKeys.toRawArray();
