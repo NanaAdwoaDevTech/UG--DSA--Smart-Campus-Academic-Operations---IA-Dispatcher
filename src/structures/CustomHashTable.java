@@ -113,7 +113,7 @@ public class CustomHashTable<K, V> {
         return null;
     }
 
-    // Robust check if key exists (handles null values correctly)
+    // Robust check if key exists (handles null values correctly, no unreachable code)
     public boolean containsKey(K key) {
         if (key == null) {
             return false;
@@ -166,6 +166,6 @@ public class CustomHashTable<K, V> {
         System.out.println("Remove missing key (Expected null): " + map.remove("LOC999"));
 
         map.remove("LOC002");
-        System.out.println("Size after removal (Expected 2): " + map.size());
+        System.out.println("Size after removal (Expected 1): " + map.size());
     }
 }
