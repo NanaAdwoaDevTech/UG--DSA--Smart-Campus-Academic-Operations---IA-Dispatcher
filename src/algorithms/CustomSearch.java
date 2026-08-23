@@ -169,7 +169,7 @@ public class CustomSearch {
      * Returns -1 if no numeric suffix is found (defensive, mirrors the
      * NOT_FOUND convention used elsewhere in this file).
      */
-    static int extractNumericSuffix(String locationId) {
+    public static int extractNumericSuffix(String locationId) {
         if (locationId == null || locationId.isEmpty()) {
             return NOT_FOUND;
         }

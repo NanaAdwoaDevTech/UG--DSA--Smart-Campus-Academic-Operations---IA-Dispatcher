@@ -6,6 +6,7 @@ package structures;
  * ID Derivation Rule: Initial array capacity = Sum of ID digits
  *                      (2+2+3+0+2+8+3+4) = 24
  */
+import java.util.NoSuchElementException;
 public class CustomArrayList<T> {
  
     // Verification Variable derived from Student ID: 22302834 -> 24
