@@ -1,8 +1,5 @@
 package src.structures;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * CustomBST.java
  * -----------------------------------------------------------------------
@@ -102,8 +99,8 @@ public class CustomBST<T extends Comparable<T>> {
      * the path ends at the last node checked before falling off the tree).
      * This is the "search path" evidence Section 6 asks for.
      */
-    public List<T> searchPath(T value) {
-        List<T> path = new ArrayList<>();
+    public MyList<T> searchPath(T value) {
+        MyList<T> path = new MyList<>();
         if (value == null) {
             return path;
         }
@@ -138,13 +135,13 @@ public class CustomBST<T extends Comparable<T>> {
     // INORDER TRAVERSAL  (sorted output evidence)
     // ---------------------------------------------------------------
 
-    public List<T> inorderTraversal() {
-        List<T> result = new ArrayList<>();
+    public MyList<T> inorderTraversal() {
+        MyList<T> result = new MyList<>();
         inorderHelper(root, result);
         return result;
     }
 
-    private void inorderHelper(Node<T> node, List<T> result) {
+    private void inorderHelper(Node<T> node, MyList<T> result) {
         if (node == null) return;
         inorderHelper(node.left, result);
         result.add(node.value);
@@ -197,7 +194,13 @@ public class CustomBST<T extends Comparable<T>> {
             bst.insert(v);
         }
 
-        System.out.println("Inserted: " + java.util.Arrays.toString(values));
+        StringBuilder insertedStr = new StringBuilder("[");
+        for (int i = 0; i < values.length; i++) {
+            insertedStr.append(values[i]);
+            if (i < values.length - 1) insertedStr.append(", ");
+        }
+        insertedStr.append("]");
+        System.out.println("Inserted: " + insertedStr);
         System.out.println("Inorder (sorted) traversal: " + bst.inorderTraversal());
         System.out.println("Size: " + bst.size());
         System.out.println("Height: " + bst.height());
