@@ -1,28 +1,32 @@
-package src.structures;
+/*
+ * Name: David Edu Turkson
+ * Student ID: 22012947
+ * Assigned Component: CustomBST.java (src/structures/CustomBST.java)
+ * Note: MyList.java is a supporting helper class used by CustomBST.java
+ */
+
+package structures;
 
 /**
- * MyList_22012947.java
+ * MyList.java
  * -----------------------------------------------------------------------
  * Custom resizable array (replacement for java.util.ArrayList/List) so
- * that CustomBST_22012947 does not depend on any built-in Java collection
+ * that CustomBST does not depend on any built-in Java collection
  * classes.
  *
  * Backed by a plain T[] array (via Object[] internally, since generic
  * array creation isn't allowed directly in Java) that doubles in
  * capacity whenever it fills up.
- *
- * Suffixed with index number 22012947 to keep this file distinct from
- * teammates' own structures in the shared repo.
  * -----------------------------------------------------------------------
  */
-public class MyList_22012947<T> {
+public class MyList<T> {
 
     private Object[] data;
     private int size;
 
     private static final int DEFAULT_CAPACITY = 8;
 
-    public MyList_22012947() {
+    public MyList() {
         data = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
