@@ -1,7 +1,7 @@
 package src.structures;
 
 /**
- * CustomBST.java
+ * CustomBST_22012947.java
  * -----------------------------------------------------------------------
  * Custom (non-self-balancing) Binary Search Tree implementation for the
  * DCIT 204/308 Joint DSA Semester Project (Ghana Smart Service Operations
@@ -9,9 +9,12 @@ package src.structures;
  *
  * ID Parameter Derivation Rule applied:
  *   Sum of ID digits = 27  ->  MAX_DEPTH_THRESHOLD = 27
+ *
+ * Suffixed with index number 22012947 per team convention, so individual
+ * contributions stay distinct in the shared repository.
  * -----------------------------------------------------------------------
  */
-public class CustomBST<T extends Comparable<T>> {
+public class CustomBST_22012947<T extends Comparable<T>> {
 
     /** Derived from ID digit sum (27). Used by isSkewed()/checkDepth(). */
     public static final int MAX_DEPTH_THRESHOLD = 27;
@@ -30,7 +33,7 @@ public class CustomBST<T extends Comparable<T>> {
     private Node<T> root;
     private int size;
 
-    public CustomBST() {
+    public CustomBST_22012947() {
         this.root = null;
         this.size = 0;
     }
@@ -54,7 +57,7 @@ public class CustomBST<T extends Comparable<T>> {
      */
     public boolean insert(T value) {
         if (value == null) {
-            throw new IllegalArgumentException("Cannot insert null value into CustomBST.");
+            throw new IllegalArgumentException("Cannot insert null value into CustomBST_22012947.");
         }
         if (root == null) {
             root = new Node<>(value);
@@ -99,8 +102,8 @@ public class CustomBST<T extends Comparable<T>> {
      * the path ends at the last node checked before falling off the tree).
      * This is the "search path" evidence Section 6 asks for.
      */
-    public MyList<T> searchPath(T value) {
-        MyList<T> path = new MyList<>();
+    public MyList_22012947<T> searchPath(T value) {
+        MyList_22012947<T> path = new MyList_22012947<>();
         if (value == null) {
             return path;
         }
@@ -135,13 +138,13 @@ public class CustomBST<T extends Comparable<T>> {
     // INORDER TRAVERSAL  (sorted output evidence)
     // ---------------------------------------------------------------
 
-    public MyList<T> inorderTraversal() {
-        MyList<T> result = new MyList<>();
+    public MyList_22012947<T> inorderTraversal() {
+        MyList_22012947<T> result = new MyList_22012947<>();
         inorderHelper(root, result);
         return result;
     }
 
-    private void inorderHelper(Node<T> node, MyList<T> result) {
+    private void inorderHelper(Node<T> node, MyList_22012947<T> result) {
         if (node == null) return;
         inorderHelper(node.left, result);
         result.add(node.value);
@@ -186,7 +189,7 @@ public class CustomBST<T extends Comparable<T>> {
     // ---------------------------------------------------------------
 
     public static void main(String[] args) {
-        CustomBST<Integer> bst = new CustomBST<>();
+        CustomBST_22012947<Integer> bst = new CustomBST_22012947<>();
 
         // Normal case
         int[] values = {50, 30, 70, 20, 40, 60, 80, 10};
@@ -217,7 +220,7 @@ public class CustomBST<T extends Comparable<T>> {
         System.out.println("Found " + missing + "? " + bst.contains(missing));
 
         // Boundary case: empty tree
-        CustomBST<Integer> emptyTree = new CustomBST<>();
+        CustomBST_22012947<Integer> emptyTree = new CustomBST_22012947<>();
         System.out.println("\nEmpty tree height: " + emptyTree.height());
         System.out.println("Empty tree isEmpty(): " + emptyTree.isEmpty());
         System.out.println("Empty tree inorder: " + emptyTree.inorderTraversal());
@@ -228,7 +231,7 @@ public class CustomBST<T extends Comparable<T>> {
 
         // Skewed tree demo: sequential inserts to show degeneration and
         // exercise the ID-derived threshold check
-        CustomBST<Integer> skewed = new CustomBST<>();
+        CustomBST_22012947<Integer> skewed = new CustomBST_22012947<>();
         for (int i = 1; i <= 30; i++) {
             skewed.insert(i);
         }

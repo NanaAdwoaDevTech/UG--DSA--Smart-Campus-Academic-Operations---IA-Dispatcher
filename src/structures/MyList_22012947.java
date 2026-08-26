@@ -1,24 +1,28 @@
 package src.structures;
 
 /**
- * MyList.java
+ * MyList_22012947.java
  * -----------------------------------------------------------------------
  * Custom resizable array (replacement for java.util.ArrayList/List) so
- * that CustomBST does not depend on any built-in Java collection classes.
+ * that CustomBST_22012947 does not depend on any built-in Java collection
+ * classes.
  *
  * Backed by a plain T[] array (via Object[] internally, since generic
  * array creation isn't allowed directly in Java) that doubles in
  * capacity whenever it fills up.
+ *
+ * Suffixed with index number 22012947 to keep this file distinct from
+ * teammates' own structures in the shared repo.
  * -----------------------------------------------------------------------
  */
-public class MyList<T> {
+public class MyList_22012947<T> {
 
     private Object[] data;
     private int size;
 
     private static final int DEFAULT_CAPACITY = 8;
 
-    public MyList() {
+    public MyList_22012947() {
         data = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
