@@ -220,7 +220,31 @@ Reviewing everyone's code this closely means Selina will end up understanding th
 
 ---
 
-## 🤖 A Note on Using AI Tools
+## 🧩 `Main.java` System Driver — Integration Spec
+
+All 5 of the components below are now merged into `main` and ready to be wired together into a single end-to-end demo via `src/Main.java`. This section documents what that driver needs to do and which components it touches, so everyone whose code is involved knows what to expect from the integration.
+
+### Components Being Integrated
+
+| # | Component | File | Owner | Key Feature | Role in the Demo |
+|---|-----------|------|-------|-------------|-------------------|
+| 1 | AdvancedSorts | `src/algorithms/AdvancedSorts.java` | Sarpong Malvin Sarfo | Custom Quick Sort (`PIVOT_OFFSET = 7`) | Sorts raw numerical arrays — student IDs, timestamps, or request priority scores. |
+| 2 | CustomSearch | `src/algorithms/CustomSearch.java` | Timothy Donkor Kyebambo | Binary Search & CSV Parsing | Loads campus location IDs from `data/locations.csv`, parses them into numeric keys via `extractNumericSuffix()`, and searches for specific location keys. |
+| 3 | CampusGraph | `src/algorithms/CampusGraph.java` | Daniella Kalevor | Graph Representation & Dijkstra Shortest Path (`TRAFFIC_MULTIPLIER = 2.6`) | Calculates shortest routing paths between campus nodes, factoring in dynamic traffic multipliers. |
+| 4 | CustomLinkedList | `src/structures/CustomLinkedList.java` | Hammond Emmanuel Adukwei | Singly Linked List with Step Iterator (`ITERATOR_STEP_SIZE = 5`) | Stores sequential dispatch records / campus nodes and demonstrates custom step-iteration. |
+| 5 | CustomQueue | `src/structures/CustomQueue.java` | Godlove Agyei Sarfo | Circular Queue (`MAX_SIZE = 64`) | Queues incoming academic dispatch requests with O(1) enqueue/dequeue before processing. |
+
+### What `Main.java` Must Do
+
+- **Import, instantiate, and run all 5 components together** in one coherent end-to-end workflow — not isolated calls, but a demo that shows data flowing from one component into the next.
+- **Demonstrated flow:** Enqueue academic requests → Extract & sort location keys → Build graph routes → Step through linked execution logs.
+- **Clean, modular console output**, organized under clear milestone headers (M1 through M5) so the flow is easy to follow when demoed live.
+- **Comprehensive null checks and try-catch blocks**, especially around reading `data/locations.csv` — a missing or malformed file should not crash the program.
+- **Zero `java.util` collection imports.** Only standard I/O (`System.out`, etc.) and Java primitive arrays are allowed — same rule as every individual component.
+
+If your component is one of the 5 listed above and the driver's integration turns up an issue in your code (a method signature mismatch, an unexpected edge case, etc.), that gets flagged back to you the same way as any other PR feedback — check the group chat for updates once integration testing runs.
+
+---
 
 You are welcome to use AI tools (Claude, ChatGPT, Copilot, etc.) to help you learn concepts, debug errors, or get unstuck — that's a normal part of how people write code now, and no one is asking you to pretend otherwise.
 
