@@ -129,7 +129,6 @@ public class CustomHashTable<K, V> {
     public static void main(String[] args) {
         CustomHashTable<String, Integer> map = new CustomHashTable<>();
 
-        // Test normal inputs with UG context keys
         map.put("LOC001", 100);
         map.put("LOC002", 200);
         System.out.println("Get LOC001 (Expected 100): " + map.get("LOC001"));
